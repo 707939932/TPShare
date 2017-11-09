@@ -1,0 +1,44 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - WechatOpenSDK (1.8.0)
+  - Weibo_SDK (3.2.3)
+  - YYModel (1.0.4)
+
+DEPENDENCIES:
+  - AFNetworking
+  - WechatOpenSDK
+  - Weibo_SDK (from `https://github.com/sinaweibosdk/weibo_ios_sdk.git`)
+  - YYModel
+
+EXTERNAL SOURCES:
+  Weibo_SDK:
+    :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
+
+CHECKOUT OPTIONS:
+  Weibo_SDK:
+    :commit: f5b138320aefe0ed20b76b8510521432f1a6c9ac
+    :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  WechatOpenSDK: 0ee07a8d492299d3e47372a33da5af26524a7576
+  Weibo_SDK: 652ca78c2f7147a5de5e75e7cbea89838a81772a
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+
+PODFILE CHECKSUM: aa43956d7159856c20ae30c295f4600058eb4356
+
+COCOAPODS: 1.4.0.beta.2
