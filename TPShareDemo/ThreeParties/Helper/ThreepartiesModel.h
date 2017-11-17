@@ -25,16 +25,16 @@
 @interface TPUserInfoModel : NSObject
 
 // 执行属性替换
-// wechat为headimgurl， weibo为profile_image_url， qq为。。。
+// wechat为headimgurl， weibo为profile_image_url， qq为figureurl_qq_2
 @property (nonatomic, copy) NSString *headimgurl;
 
-// wechat为nickname， weibo为name， qq为。。。
+// wechat为nickname， weibo为name， qq为nickname
 @property (nonatomic, copy) NSString *nickname;
 
-// wechat为sex， weibo为gender， qq为。。。
+// wechat为sex， weibo为gender， qq为gender
 @property (nonatomic, assign) NSInteger sex;
 
-// wechat 不更改， weibo为id， qq为。。。
+// wechat 不更改， weibo为id， qq为openid
 @property (nonatomic, copy) NSString *uid;
 
 // 以下为微信用户信息

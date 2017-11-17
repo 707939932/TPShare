@@ -51,4 +51,29 @@
 #import "ThreepartiesHelper.h"
 
 
+static NSString *const kTipsTPCancel = @"用户取消"; // 0
+static NSString *const kTipsTPUnknow = @"未知错误"; // -1
+static NSString *const kTipsTPSuccess = @"操作成功"; // -2
+static NSString *const kTipsTPFail = @"操作失败"; // -3
+
+
+static NSString *errorMessageWithCode(NSInteger code) {
+    NSString *kMessage;
+    switch (code) {
+        case 0:
+            kMessage = kTipsTPSuccess;
+            break;
+        case -1:
+            kMessage = kTipsTPUnknow;
+            break;
+        case -2:
+            kMessage = kTipsTPCancel;
+            break;
+        case -3:
+            kMessage = kTipsTPFail;
+            break;
+    }
+    return kMessage;
+}
+
 #endif /* ThreepartiesHeader_h */

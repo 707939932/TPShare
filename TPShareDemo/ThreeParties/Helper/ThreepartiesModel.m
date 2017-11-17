@@ -28,11 +28,12 @@
 
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper {
     return @{
-             @"headimgurl":@[@"headimgurl",@"profile_image_url"],
-             @"uid":@[@"uid",@"id"],
-             @"nickname":@[@"nickname",@"name"],
-             @"sex":@[@"sex",@"gender"]
+             @"face":@[@"headimgurl",@"profile_image_url",@"headimgurl",@"figureurl_qq_2"],
+             @"uid":@[@"id",@"openid",@"uid"],
+             @"nickname":@[@"name",@"nickname"],
+             @"sex":@[@"gender",@"sex"]
              };
+    
 }
 
 - (NSString *)description

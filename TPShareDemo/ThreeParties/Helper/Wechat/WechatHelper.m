@@ -49,12 +49,13 @@
     
     
     NSInteger code = (resp.errCode == 0 || resp.errCode == -2 || resp.errCode == -3) ? resp.errCode : -1;
-    
+    NSString *kMessage = errorMessageWithCode(code);
+
     // 分享
     if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
 
         if (self.delegate && [self.delegate respondsToSelector:@selector(platformShareStateChanged:message:)]) {
-            [self.delegate platformShareStateChanged:code message:@""];
+            [self.delegate platformShareStateChanged:code message:kMessage];
         }
 
     }
@@ -89,7 +90,7 @@
                             TPUserInfoModel *user = [TPUserInfoModel yy_modelWithJSON:response];
                             
                             if (self.delegate && [self.delegate respondsToSelector:@selector(platformLoginStateChanged:message:user:)]) {
-                                [self.delegate platformLoginStateChanged:code message:@"" user:user];
+                                [self.delegate platformLoginStateChanged:code message:kMessage user:user];
                             }
                         }
                     }];
@@ -100,7 +101,7 @@
          
             // 授权失败
             if (self.delegate && [self.delegate respondsToSelector:@selector(platformLoginStateChanged:message:user:)]) {
-                [self.delegate platformLoginStateChanged:code message:@"" user:nil];
+                [self.delegate platformLoginStateChanged:code message:kMessage user:nil];
             }
 
         }

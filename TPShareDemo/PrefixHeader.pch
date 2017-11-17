@@ -12,9 +12,9 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
-#import "ThreepartiesHeader.h"
 #import <YYModel.h>
 #import <AFNetworking.h>
+#import "ThreepartiesHeader.h"
 
 
 #endif /* PrefixHeader_pch */

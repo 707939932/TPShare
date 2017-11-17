@@ -11,7 +11,7 @@
 @interface TencentHelper ()
 {
     // qq 授权对象
-    TencentOAuth *_qqAuth;
+    TencentOAuth *_tencentAuth;
 }
 @end
 
@@ -20,8 +20,8 @@
 
 
 - (void)registerAppWithKey:(NSString *)appKey {
-    _qqAuth = [[TencentOAuth alloc] initWithAppId:appKey andDelegate:self];
-    _qqAuth.redirectURI = kRedirectURI;
+    _tencentAuth = [[TencentOAuth alloc] initWithAppId:appKey andDelegate:self];
+    _tencentAuth.redirectURI = kRedirectURI;
 }
 
 - (void)disposePlatformURL:(NSURL *)url {
@@ -34,18 +34,46 @@
 
 
 #pragma mark - // TencentSessionDelegate
-// qq SDK自带回调的方法
+//  SDK自带回调的方法
 - (void)tencentDidLogin {
-    
+    [_tencentAuth getUserInfo];
 }
 - (void)tencentDidNotLogin:(BOOL)cancelled {
+    TPResponseState code;
+    NSString *message;
+    if (cancelled) {
+        // 用户取消
+        code = TPResponseStateCancel;
+        message = kTipsTPCancel;
+    }else {
+        // 登录失败
+        code = TPResponseStateUnknown;
+        message = kTipsTPUnknow;
+    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(platformLoginStateChanged:message:user:)]) {
+        [self.delegate platformLoginStateChanged:code message:message user:nil];
+    }
     
 }
 - (void)tencentDidNotNetWork {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(platformLoginStateChanged:message:user:)]) {
+        [self.delegate platformLoginStateChanged:-1 message:@"网络异常" user:nil];
+    }
 }
+//
 - (void)getUserInfoResponse:(APIResponse *)response {
-    
+    if (response.retCode == 0) {
+        NSMutableDictionary *mResp = [response.jsonResponse mutableCopy];
+        NSString *gender = mResp[@"gender"];
+        gender = [gender isEqualToString:@"男"] ? @"1":([gender isEqualToString:@"女"]?@"2":@"0");
+        [mResp addEntriesFromDictionary:@{@"gender":gender,@"openid":_tencentAuth.openId,@"uid":_tencentAuth.openId}];
+        TPUserInfoModel *model = [TPUserInfoModel yy_modelWithJSON:mResp];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(platformLoginStateChanged:message:user:)]) {
+            [self.delegate platformLoginStateChanged:TPResponseStateSuccess message:kTipsTPSuccess user:model];
+        }
+        
+    }
 }
 
 
@@ -67,7 +95,7 @@
 
 #pragma mark - 登录
 - (void)platformLogin {
-    [_qqAuth authorize:@[@"get_user_info", @"get_simple_userinfo", @"add_t"] inSafari:NO];
+    [_tencentAuth authorize:@[@"get_user_info", @"get_simple_userinfo", @"add_t"] inSafari:NO];
 }
 
 

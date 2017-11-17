@@ -26,71 +26,84 @@
 }
 
 - (IBAction)qqLogin:(UIButton *)sender {
-    NSLog(@"qqLogin----- %s",__func__);
-    [ThreepartiesHelper loginWithType:TPPlatformTypeQQ platformAccont:nil loginStateChanged:^(TPResponseState state, NSString *message, TPUserInfoModel *user) {
-        NSLog(@"login -->  state = %ld \n message = %@\n user = %@",state, message, user);
-    }];
+    [self showAlert:@"appid appscrect 'ThreepartiesHeader.h' 中设置" ];
+
+//    [ThreepartiesHelper loginWithType:TPPlatformTypeQQ platformAccont:nil loginStateChanged:^(TPResponseState state, NSString *message, TPUserInfoModel *user) {
+//        NSLog(@"login -->  state = %ld \n message = %@\n user = %@",state, message, user);
+//    }];
 }
 
 - (IBAction)wechatLogin:(UIButton *)sender {
-    NSLog(@"wechatLogin------ %s",__func__);
-    TPAccountModel *model;
+    [self showAlert:@"appid appscrect 'ThreepartiesHeader.h' 中设置" ];
+
+    
+//    TPAccountModel *model;
 //    TPAccountModel *model = [[TPAccountModel alloc] init];
 //    model.appId = @"111111";
 //    model.appSecret = @"1111111";
 
-#warning
-    NSAssert(model, @"model 不能为空");
-    
-    [ThreepartiesHelper loginWithType:TPPlatformTypeWechat platformAccont:model loginStateChanged:^(TPResponseState state, NSString *message, TPUserInfoModel *user) {
-        NSLog(@"login -->  state = %ld \n message = %@\n user = %@",state, message, user);
-    }];
+
+//    NSAssert(model, @"model 不能为空");
+//
+//    [ThreepartiesHelper loginWithType:TPPlatformTypeWechat platformAccont:model loginStateChanged:^(TPResponseState state, NSString *message, TPUserInfoModel *user) {
+//        NSLog(@"login -->  state = %ld \n message = %@\n user = %@",state, message, user);
+//    }];
 
 }
 
 - (IBAction)weiboLogin:(UIButton *)sender {
-    NSLog(@"weiboLogin------- %s",__func__);
-    [ThreepartiesHelper loginWithType:TPPlatformTypeWeibo platformAccont:nil loginStateChanged:^(TPResponseState state, NSString *message, TPUserInfoModel *user) {
-        NSLog(@"login --> state = %ld \n message = %@\n user = %@",state, message, user);
-    }];
+    [self showAlert:@"appid appscrect 'ThreepartiesHeader.h' 中设置" ];
+
+//    [ThreepartiesHelper loginWithType:TPPlatformTypeWeibo platformAccont:nil loginStateChanged:^(TPResponseState state, NSString *message, TPUserInfoModel *user) {
+//        NSLog(@"login --> state = %ld \n message = %@\n user = %@",state, message, user);
+//    }];
 
 }
 
 
 - (IBAction)qqShare:(UIButton *)sender {
-    NSLog(@"qqShare---------- %s",__func__);
+
     // 0 为 qq好友   1 为 qq空间
-    [self shareWithType:TPPlatformTypeQQ scene:0];
+    [self showAlert:@"appid appscrect 'ThreepartiesHeader.h' 中设置" ];
+
+//    [self shareWithType:TPPlatformTypeQQ scene:0];
+//    [self shareWithType:TPPlatformTypeQQ scene:1];
+
 }
 
 - (IBAction)wechatShare:(UIButton *)sender {
     NSLog(@"wechatShare------  %s",__func__);
     // 0 为 微信好友   1 为 朋友圈
-    [self shareWithType:TPPlatformTypeWechat scene:0];
+    [self showAlert:@"appid appscrect 'ThreepartiesHeader.h' 中设置" ];
+
+//    [self shareWithType:TPPlatformTypeWechat scene:0];
+//    [self shareWithType:TPPlatformTypeWechat scene:1];
 
 }
 
 - (IBAction)weiboShare:(UIButton *)sender {
     NSLog(@"weiboShare-------  %s",__func__);
     // 微博无 scene 区分
-    [self shareWithType:TPPlatformTypeWeibo scene:0];
+    [self showAlert:@"appid appscrect 'ThreepartiesHeader.h' 中设置" ];
+
+    //    [self shareWithType:TPPlatformTypeWeibo scene:0];
 }
 
 - (IBAction)alipay:(UIButton *)sender {
-    NSLog(@"alipay----------- %s",__func__);
     
-#warning 本地处理官方demo中有
-    NSAssert(0, @"服务器处理订单之后返回的可发起支付的订单编号");
     
-    [self aliPayWithOrderString:@""];
+    [self showAlert:@"服务器完成统一下单之后的参数集"];
+//#warning 本地处理官方demo中有
+//    NSAssert(0, @"服务器处理订单之后返回的可发起支付的订单编号");
+//    [self aliPayWithOrderString:@""];
 }
 
 - (IBAction)wechatpay:(UIButton *)sender {
-    NSLog(@"wechatpay-------- %s",__func__);
-#warning 本地处理官方demo中有
-    NSAssert(0, @"服务器完成统一下单之后的参数集");
-
-    [self weChatPayWithPrepayInfo:@{}];
+    [self showAlert:@"服务器完成统一下单之后的参数集"];
+    
+//#warning 本地处理官方demo中有
+//    NSAssert(0, @"服务器完成统一下单之后的参数集");
+//    [self weChatPayWithPrepayInfo:@{}];
 }
 
 #pragma mark - 分享
@@ -101,8 +114,15 @@
     }];
 }
 
-#pragma mark - 登录
 
+- (void)showAlert:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 
 
