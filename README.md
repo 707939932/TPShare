@@ -1,6 +1,8 @@
 # TPShare
 支付宝、微信、微博、QQ平台的登录分享及支付
 
+<11.17 -- 完成QQ登录与分享回调
+
  DEMO 主要是把每一个三方平台独立为一个helper，关于三方的注册，分享，登录，以及`openURL`的调用，全是在helper中实现的，个别独立参数通过传值实现，而helper中实现的上述方法通过协议`TPPlatformProtocol`定义，回调完成的参数返回通过协议`TPPlatformStateDelegate`实现，个人觉得这样的好处是板块独立，方便以后添加新的三方平台，或者移除某些平台。`ThreepartiesHelper`用于外部调用注册、回调URL、登录及分享
 
 ############ 使用方法 ##############
